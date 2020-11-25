@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8" />
+    <title></title>
+
+</head>
+
+<body class="style-anket">
+{% extends "app/layout.html" %}
+{% block content %}
+{% if form != None %}
+    
+<br><h2>Пожалуйста заполните информацию о себе для связи.</h2> 
+<h2>Информация будет использована только для связи с Вами.</h2><br>
+ <div>
+    <form method="POST">
+    {% csrf_token %}
+        <label for="{{ form.name.id_for_label }}" >{{ form.name.label }}: </label>
+         {{ form.name }}<br><br>
+        <label for="{{ form.city.id_for_label }}">{{ form.city.label }}:</label>
+         {{ form.city }}<br>
+        <label for="{{ form.gender.id_for_label }}">{{ form.gender.label }}:</label>
+         {{ form.gender }}
+        <label for="{{ form.abilities.id_for_label }}">{{ form.abilities.label }}:</label><br>
+         {{ form.abilities }}<br><br>
+        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}:</label>
+         {{ form.email }}<br><br>
+        <label for="{{ form.message.id_for_label }}">{{ form.message.label }}:</label><br>
+        {{ form.message }}<br><br>
+        <input  type="submit" value="Отправить" id="b1">
+    </form>
+     <script>
+            function mouse_in()
+            {
+                $('#b1').css('background', 'green');
+                $('#b1').css('color', 'red');
+                
+         }
+         function mouse_out()
+            {
+             $('#b1').css('background', 'white');
+             $('#b1').css('color', 'black');
+         
+            }
+        
+          function focus_in()
+            {
+              $('#id_name').css('background', 'red');
+   
+         }
+          function focus_out()
+            {
+              $('#id_name').css('background', 'white');
+
+         }
+          function focus_in1()
+            {
+              $('#id_city').css('background', 'lightgreen');
+
+         }
+          function focus_out1()
+            {
+              $('#id_city').css('background', 'white');
+
+         }
+          function focus_in3()
+            {
+              $('#id_email').css('background', 'green');
+
+         }
+          function focus_out3()
+            {
+              $('#id_email').css('background', 'white');
+              setTimeOut(alert("Разработчик сайта Sroginis. R.V.)",1000)
+         }
+                   function focus_in4()
+            {
+                       $('#id_message').css('background', 'lightgreen');
+         }
+          function focus_out4()
+            {
+              $('#id_message').css('background', 'white');
+     
+         }
+         $('#b1').mouseover(mouse_in);
+         $('#b1').mouseout(mouse_out);
+         $('#id_name').focus(focus_in);
+         $('#id_name').blur(focus_out);
+         $('#id_city').focus(focus_in1);
+         $('#id_city').blur(focus_out1);
+         $('#id_email').focus(focus_in3);
+         $('#id_email').blur(focus_out3);
+         $('#id_message').focus(focus_in4);
+         $('#id_message').blur(focus_out4);
+     </script>
+</div>
+{% else %}
+<br><h2>Спасибо за обращение. Ответ придёт на указанный  email.</h2>
+<h3>Вы сообщили о себе следующее:</h3>
+<ul>
+    <li><span>Имя: </span> {{ data.name }}</li>
+    <li><span>Город: </span> {{ data.city }}</li>
+    <li><span>Пол: </span> {{ data.gender }}</li>
+    <li><span>Знание английского: </span> {{ data.abilities }}</li>
+    <li><span>Ваш e-mail:</span> {{ data.email }} </li>
+    <li><span>Текст обращения:</span>{{ data.message }}</li>
+</ul>
+{% endif %}
+{% endblock %}
+</body>
+</html>
